@@ -1,4 +1,4 @@
-package cl.inventario.sb.app.Inventarioproductos;
+package com.company.inventory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
