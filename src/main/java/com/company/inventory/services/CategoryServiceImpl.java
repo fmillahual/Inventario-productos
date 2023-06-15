@@ -102,6 +102,7 @@ public class CategoryServiceImpl implements ICategoryService{
 	
 	
 	@Override
+	@Transactional(readOnly = false)
 	public ResponseEntity<CategoryResponseRest> update(Category category, Long id) {
 		CategoryResponseRest response = new CategoryResponseRest();
 		List<Category> list = new ArrayList<>();
@@ -127,9 +128,40 @@ public class CategoryServiceImpl implements ICategoryService{
 				}
 
 			} else {
-				response.setMetadata(HttpStatus.BAD_REQUEST.toString(), "Categoria no guardada");
+				response.setMetadata(HttpStatus.BAD_REQUEST.toString(), "Categoria no actualizada");
 				return new ResponseEntity<CategoryResponseRest>(response, HttpStatus.BAD_REQUEST);
 			}
+			
+		} catch (Exception e) {
+			response.setMetadata(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error al actualizar categoria");
+			e.getStackTrace();
+			return new ResponseEntity<CategoryResponseRest>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<CategoryResponseRest>(response, HttpStatus.OK);
+	}
+	
+	@Override
+	@Transactional(readOnly = false)
+	public ResponseEntity<CategoryResponseRest> delete(Long id) {
+		CategoryResponseRest response = new CategoryResponseRest();
+		List<Category> list = new ArrayList<>();
+		
+		
+		try {
+	
+			Optional<Category> categorySearch = categoryDao.findById(id);
+			
+			if(categorySearch != null) {
+				categoryDao.deleteById(id);
+				list.add(categorySearch.get());
+				response.getCategoryResponse().setCategory(list);
+				response.setMetadata(HttpStatus.OK.toString(), "Categoria eliminada con exito");
+			} else {
+				response.setMetadata(HttpStatus.BAD_REQUEST.toString(), "Categoria no eliminada");
+				return new ResponseEntity<CategoryResponseRest>(response, HttpStatus.BAD_REQUEST);
+			}
+
+
 			
 		} catch (Exception e) {
 			response.setMetadata(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "Error al guardar categoria");

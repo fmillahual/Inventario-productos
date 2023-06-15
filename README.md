@@ -21,6 +21,8 @@ Trello:https://trello.com/b/9rVKgkWA/proyecto-control-de-inventario \
 * Recuperar todas las categorias
 * Recuperar categoria mediante id
 * Agregar una nueva categoria
+* Actualizar categoria mediante id
+* Eliminar categoria mediante id
 
 ```
 ┌──────────┬──────────────────────────────────────┐
@@ -33,6 +35,8 @@ Trello:https://trello.com/b/9rVKgkWA/proyecto-control-de-inventario \
 │POST      │localhost:8080/api/v1/categories      │ 
 ├──────────┼──────────────────────────────────────┤
 │PUT       │localhost:8080/api/v1/categories/<ID> │ 
+├──────────┼──────────────────────────────────────┤
+│DELETE    │localhost:8080/api/v1/categories/<ID> │ 
 └──────────┴──────────────────────────────────────┘
 ```
 Ejemplo POST categoria
