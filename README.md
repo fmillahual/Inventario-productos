@@ -30,7 +30,9 @@ Trello:https://trello.com/b/9rVKgkWA/proyecto-control-de-inventario \
 ├──────────┼──────────────────────────────────────┤
 │GET       │localhost:8080/api/v1/categories/<ID> │
 ├──────────┼──────────────────────────────────────┤
-│POST      │                                      │ 
+│POST      │localhost:8080/api/v1/categories      │ 
+├──────────┼──────────────────────────────────────┤
+│PUT       │localhost:8080/api/v1/categories/<ID> │ 
 └──────────┴──────────────────────────────────────┘
 ```
 Ejemplo POST categoria
@@ -39,5 +41,14 @@ Ejemplo POST categoria
 {
 	"name": "Deportes",
 	"description": "Artículos y equipos deportivos"
+}
+```
+
+Ejemplo PUT categoria
+
+```
+{
+	"name": "Deportes",
+	"description": "Artículos deportivos"
 }
 ```
